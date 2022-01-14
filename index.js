@@ -24,7 +24,7 @@ class Parallax {
     const speedValue = 1.5;
 
     if (this.img.clientHeight <= this.block.clientHeight) {
-      elHtml.style.setProperty('--size-img1', this.block.clientHeight * (speedSize ?? speedValue) + 'px');
+      elHtml.style.setProperty('--size-img', this.block.clientHeight * (speedSize ?? speedValue) + 'px');
     }
   }
 
@@ -40,6 +40,7 @@ class Parallax {
     });
   }
 }
+
 
 new Parallax(wrapImageUp).start();
 new Parallax(wrapImageDown).start();
