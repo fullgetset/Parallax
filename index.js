@@ -1,30 +1,31 @@
 const wrapImageUp = document.querySelector('.image-wrapper__up');
 const wrapImageDown = document.querySelector('.image-wrapper__down');
 const elHtml = document.querySelector('html');
+let cssVel = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--size-img'));
 
 class Parallax {
-  constructor(block) {
+  constructor(block, speed) {
     this.block = block;
     this.img = block.children[0];
+    this.speed = speed;
   }
 
   moveEffect() {
     const positionTop = this.block.getBoundingClientRect().top - window.innerHeight;
     const positionBottom = this.block.getBoundingClientRect().bottom;
-    const difference = this.img.style.height - this.block.clientHeight;
+    const difference = (this.img.clientHeight - this.block.clientHeight) / 2;
 
     if (positionTop <= 0 && positionBottom >= 0) {
-      let size = parseInt(-positionBottom / (positionTop - positionBottom) * difference - difference / 2);
+      let size = parseInt((positionBottom / (positionBottom - positionTop) * 2 - 1) * difference);
       this.img.style.transform = `translateY(${size}px)`;
     }
   };
 
   check() {
-    const speedSize = 2;
     const speedValue = 1.5;
 
     if (this.img.clientHeight <= this.block.clientHeight) {
-      elHtml.style.setProperty('--size-img', this.block.clientHeight * (speedSize ?? speedValue) + 'px');
+      elHtml.style.setProperty('--size-img', this.block.clientHeight * (this.speed ?? speedValue) + 'px');
     }
   }
 
@@ -42,5 +43,5 @@ class Parallax {
 }
 
 
-new Parallax(wrapImageUp).start();
-new Parallax(wrapImageDown).start();
+// new Parallax(wrapImageUp, 4).start();
+new Parallax(wrapImageDown, 4).start();
