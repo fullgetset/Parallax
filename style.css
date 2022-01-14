@@ -1,6 +1,4 @@
-html {
-    --size-img: 400px;
-}
+
 
 body {
     margin: 0;
@@ -43,14 +41,14 @@ div:nth-of-type(2) {
 
 div:nth-of-type(1) img {
     object-fit: cover;
-    height: var(--size-img);
+    height: 400px;
     width: 100%;
 }
 
 div:nth-of-type(2) img {
     object-fit: cover;
     width: 100%;
-    height: var(--size-img);
+    height: 500px;
 
 }
 
